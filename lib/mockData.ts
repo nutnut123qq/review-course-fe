@@ -24,12 +24,12 @@ export const courseCriteria: Criterion[] = [
 ];
 
 export const courses: Course[] = [
-  { id: "1", code: "CS101", name: "Lập trình cơ bản", description: "Nhập môn lập trình với C/Java." },
-  { id: "2", code: "MATH101", name: "Giải tích 1", description: "Giới hạn, đạo hàm, tích phân." },
-  { id: "3", code: "CS201", name: "Cấu trúc dữ liệu & Giải thuật", description: "Các cấu trúc dữ liệu và thuật toán cơ bản." },
-  { id: "4", code: "DB101", name: "Cơ sở dữ liệu", description: "SQL, thiết kế CSDL." },
-  { id: "5", code: "WEB101", name: "Lập trình Web", description: "HTML, CSS, JavaScript, React." },
-  { id: "6", code: "SOFT201", name: "Kỹ nghệ phần mềm", description: "Quy trình phát triển phần mềm." },
+  { id: "1", code: "CS101", name: "Lập trình cơ bản", description: "Nhập môn lập trình với C/Java.", image: "https://picsum.photos/seed/course1/400/240" },
+  { id: "2", code: "MATH101", name: "Giải tích 1", description: "Giới hạn, đạo hàm, tích phân.", image: "https://picsum.photos/seed/course2/400/240" },
+  { id: "3", code: "CS201", name: "Cấu trúc dữ liệu & Giải thuật", description: "Các cấu trúc dữ liệu và thuật toán cơ bản.", image: "https://picsum.photos/seed/course3/400/240" },
+  { id: "4", code: "DB101", name: "Cơ sở dữ liệu", description: "SQL, thiết kế CSDL.", image: "https://picsum.photos/seed/course4/400/240" },
+  { id: "5", code: "WEB101", name: "Lập trình Web", description: "HTML, CSS, JavaScript, React.", image: "https://picsum.photos/seed/course5/400/240" },
+  { id: "6", code: "SOFT201", name: "Kỹ nghệ phần mềm", description: "Quy trình phát triển phần mềm.", image: "https://picsum.photos/seed/course6/400/240" },
 ];
 
 // Mock reviews: 5,2,4,3,2 style for one criterion; spread across courses
@@ -102,11 +102,11 @@ export const businessCriteria: BusinessCriterion[] = [
 ];
 
 export const businesses: Business[] = [
-  { id: "b1", name: "FPT Software", description: "Công ty phần mềm lớn", industry: "IT" },
-  { id: "b2", name: "Viettel Solutions", description: "Giải pháp công nghệ", industry: "IT" },
-  { id: "b3", name: "Tiki", description: "Sàn thương mại điện tử", industry: "E-commerce" },
-  { id: "b4", name: "Grab Vietnam", description: "Công nghệ di chuyển", industry: "Tech" },
-  { id: "b5", name: "VNG Corporation", description: "Công ty internet & game", industry: "IT" },
+  { id: "b1", name: "FPT Software", description: "Công ty phần mềm lớn", industry: "IT", image: "https://picsum.photos/seed/biz1/400/240" },
+  { id: "b2", name: "Viettel Solutions", description: "Giải pháp công nghệ", industry: "IT", image: "https://picsum.photos/seed/biz2/400/240" },
+  { id: "b3", name: "Tiki", description: "Sàn thương mại điện tử", industry: "E-commerce", image: "https://picsum.photos/seed/biz3/400/240" },
+  { id: "b4", name: "Grab Vietnam", description: "Công nghệ di chuyển", industry: "Tech", image: "https://picsum.photos/seed/biz4/400/240" },
+  { id: "b5", name: "VNG Corporation", description: "Công ty internet & game", industry: "IT", image: "https://picsum.photos/seed/biz5/400/240" },
 ];
 
 const businessReviewRatings = (businessId: string): BusinessReview["ratings"] =>

@@ -27,6 +27,7 @@ export interface Course {
   code: string;
   name: string;
   description?: string;
+  image?: string;
 }
 
 export interface CourseReview {
@@ -65,6 +66,7 @@ export interface Business {
   name: string;
   description?: string;
   industry?: string;
+  image?: string;
 }
 
 export interface BusinessReview {

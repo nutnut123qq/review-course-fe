@@ -2,6 +2,7 @@
 
 import { useCallback, useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useParams } from "next/navigation";
 import { TabNav } from "@/components/TabNav";
 import { AdSlot } from "@/components/AdSlot";
@@ -81,6 +82,18 @@ export default function BusinessDetailPage() {
         >
           ← Quay lại danh sách doanh nghiệp
         </Link>
+
+        {business.image && (
+          <div className="relative mb-6 aspect-video w-full max-w-3xl overflow-hidden rounded-2xl">
+            <Image
+              src={business.image}
+              alt=""
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 672px"
+            />
+          </div>
+        )}
 
         <div className="mb-6">
           {business.industry && (
