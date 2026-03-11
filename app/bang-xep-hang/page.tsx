@@ -8,6 +8,7 @@ import {
   businesses,
   getBusinessSummary,
 } from "@/lib/mockData";
+import { AdsTwoSides } from "@/components/AdsTwoSides";
 
 export default function BangXepHangPage() {
   const topCourses = useMemo(() => {
@@ -54,7 +55,7 @@ export default function BangXepHangPage() {
 
   return (
     <div className="min-h-screen bg-[var(--color-background)]">
-      <main className="mx-auto max-w-6xl px-4 py-8 md:px-6">
+      <AdsTwoSides>
         <h1 className="mb-8 font-heading text-2xl font-bold text-[var(--color-text)] md:text-3xl">
           Bảng xếp hạng
         </h1>
@@ -117,7 +118,7 @@ export default function BangXepHangPage() {
             ))}
           </ul>
         </section>
-      </main>
+      </AdsTwoSides>
     </div>
   );
 }

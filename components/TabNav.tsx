@@ -11,13 +11,14 @@ const tabs = [
 
 export function TabNav() {
   const pathname = usePathname();
+  const effectivePath = pathname === "/" ? "/review-mon-hoc" : pathname;
 
   return (
     <nav aria-label="Chuyển tab chính">
       <ul className="flex gap-2">
         {tabs.map(({ href, label }) => {
           const isActive =
-            pathname === href || pathname.startsWith(href + "/");
+            effectivePath === href || effectivePath.startsWith(href + "/");
           return (
             <li key={href}>
               <Link

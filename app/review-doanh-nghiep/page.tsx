@@ -64,36 +64,6 @@ export default function ReviewDoanhNghiepPage() {
           </div>
         </section>
 
-        <div className="mb-4 flex flex-wrap gap-2">
-          <button
-            type="button"
-            onClick={() => setIndustryFilter(null)}
-            className={`cursor-pointer rounded-full px-4 py-2 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)] ${
-              industryFilter === null
-                ? "bg-[var(--color-primary)] text-white"
-                : "bg-neutral-100 text-[var(--color-text)] hover:bg-neutral-200"
-            }`}
-            aria-pressed={industryFilter === null}
-          >
-            Tất cả
-          </button>
-          {industries.map((ind) => (
-            <button
-              key={ind}
-              type="button"
-              onClick={() => setIndustryFilter(ind)}
-              className={`cursor-pointer rounded-full px-4 py-2 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)] ${
-                industryFilter === ind
-                  ? "bg-[var(--color-primary)] text-white"
-                  : "bg-neutral-100 text-[var(--color-text)] hover:bg-neutral-200"
-              }`}
-              aria-pressed={industryFilter === ind}
-            >
-              {ind}
-            </button>
-          ))}
-        </div>
-
         <div className="mb-6">
           <CourseSearch
             value={searchQuery}
