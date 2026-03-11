@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 const tabs = [
   { href: "/review-mon-hoc", label: "Review Môn Học" },
   { href: "/review-doanh-nghiep", label: "Review Doanh Nghiệp" },
+  { href: "/bang-xep-hang", label: "Bảng xếp hạng" },
 ] as const;
 
 export function TabNav() {

@@ -4,8 +4,7 @@ import { useCallback, useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import { TabNav } from "@/components/TabNav";
-import { AdSlot } from "@/components/AdSlot";
+import { AdsTwoSides } from "@/components/AdsTwoSides";
 import { BusinessCriteriaRatings } from "@/components/BusinessCriteriaRatings";
 import { BusinessReviewForm } from "@/components/BusinessReviewForm";
 import {
@@ -19,6 +18,10 @@ export default function BusinessDetailPage() {
   const params = useParams();
   const id = typeof params.id === "string" ? params.id : "";
   const [localReviews, setLocalReviews] = useState<BusinessReview[]>([]);
+  const [commentText, setCommentText] = useState("");
+  const [comments, setComments] = useState<
+    { id: string; author: string; content: string; createdAt: string }[]
+  >([]);
 
   const business = useMemo(
     () => businesses.find((b) => b.id === id),
@@ -63,19 +66,7 @@ export default function BusinessDetailPage() {
 
   return (
     <div className="min-h-screen bg-[var(--color-background)]">
-      <header className="border-b border-neutral-200 bg-white/80 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 md:px-6">
-          <Link
-            href="/"
-            className="text-xl font-bold tracking-tight text-[var(--color-text)] transition-colors duration-200 hover:text-[var(--color-primary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
-          >
-            Review Course
-          </Link>
-          <TabNav />
-        </div>
-      </header>
-
-      <main className="mx-auto max-w-6xl px-4 py-8 md:px-6">
+      <AdsTwoSides>
         <Link
           href="/review-doanh-nghiep"
           className="mb-6 inline-block text-sm text-[var(--color-primary)] underline transition-colors hover:text-neutral-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
@@ -120,16 +111,81 @@ export default function BusinessDetailPage() {
                 criteria={businessCriteria}
                 onSubmit={handleSubmit}
               />
+
+              <div className="mt-6 border-t border-neutral-200 pt-4">
+                <h2 className="mb-2 font-heading text-sm font-semibold text-[var(--color-text)]">
+                  Bình luận thêm về doanh nghiệp
+                </h2>
+                <p className="mb-3 text-xs text-neutral-500">
+                  Ghi lại trải nghiệm thực tế, văn hoá làm việc hoặc lời khuyên cho các bạn chuẩn bị thực tập.
+                </p>
+                <form
+                  className="space-y-3"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const value = commentText.trim();
+                    if (!value) return;
+                    setComments((prev) => [
+                      {
+                        id: `biz-cmt-${Date.now()}`,
+                        author: "Người dùng ẩn danh",
+                        content: value,
+                        createdAt: new Date().toISOString(),
+                      },
+                      ...prev,
+                    ]);
+                    setCommentText("");
+                  }}
+                >
+                  <textarea
+                    rows={3}
+                    value={commentText}
+                    onChange={(e) => setCommentText(e.target.value)}
+                    placeholder="Ví dụ: Môi trường khá thân thiện, leader hỗ trợ tốt nhưng OT nhiều vào giai đoạn nước rút..."
+                    className="w-full resize-none rounded-xl border border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-[var(--color-text)] outline-none transition focus:border-[var(--color-primary)] focus:bg-white focus:ring-2 focus:ring-[var(--color-primary)]/20"
+                  />
+                  <div className="flex items-center justify-between text-xs text-neutral-500">
+                    <span>
+                      Tránh nêu đích danh cá nhân, giữ bình luận khách quan và tôn trọng.
+                    </span>
+                    <button
+                      type="submit"
+                      className="cursor-pointer rounded-full bg-[var(--color-primary)] px-4 py-2 text-xs font-semibold text-white shadow-[var(--shadow-sm)] transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-md)]"
+                    >
+                      Gửi bình luận
+                    </button>
+                  </div>
+                </form>
+
+                {comments.length > 0 && (
+                  <div className="mt-4 space-y-3">
+                    {comments.map((c) => (
+                      <div
+                        key={c.id}
+                        className="rounded-xl bg-neutral-50 px-3 py-2 text-sm text-[var(--color-text)]"
+                      >
+                        <div className="mb-1 flex items-center justify-between text-xs text-neutral-500">
+                          <span>{c.author}</span>
+                          <span>
+                            {new Date(c.createdAt).toLocaleString("vi-VN", {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              day: "2-digit",
+                              month: "2-digit",
+                            })}
+                          </span>
+                        </div>
+                        <p className="whitespace-pre-line">{c.content}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-          <div>
-            <AdSlot
-              slotId="business-detail-sidebar"
-              className="min-h-[200px]"
-            />
-          </div>
+          <div />
         </div>
-      </main>
+      </AdsTwoSides>
     </div>
   );
 }
